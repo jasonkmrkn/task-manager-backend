@@ -9,6 +9,9 @@ class Priority extends Model
 {
     use HasFactory;
 
+    protected $table = 'priority';
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
