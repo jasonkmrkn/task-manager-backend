@@ -32,12 +32,22 @@ class ProjectController extends Controller
         // 2. get user yg udah authenticated
         $user = $request->user();
 
-        // 3. create project baru dari user itu
+        // 3. cek apakah ada project dengan nama yg sama
+        $existingProject = $user->projects()->where('name', $validated['name'])->exists();
+
+        // 4. error response kalo ada
+        if ($existingProject) {
+            return response()->json([
+                'message' => 'A project with this name already exists for your account.'
+            ], 422);
+        }
+
+        // 4. create project baru dari user itu
         $project = $user->projects()->create([
             'name' => $validated['name'],
         ]);
 
-        // 4. return project yg baru dibuat dalam json response
+        // 5. return project yg baru dibuat dalam json response
         return response()->json($project, 201);
     }
 
