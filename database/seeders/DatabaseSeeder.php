@@ -19,12 +19,5 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::Class,
             PrioritySeeder::class,
         ]);
-
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
     }
 }

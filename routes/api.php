@@ -21,6 +21,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('tasks', TaskController::class);
 
-    // TODO: 8 feature routes here
-
 });
