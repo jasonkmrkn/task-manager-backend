@@ -13,11 +13,6 @@ class Priority extends Model
     protected $table = 'priority';
     public $timestamps = false;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
     ];

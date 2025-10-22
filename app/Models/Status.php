@@ -12,11 +12,6 @@ class Status extends Model
     protected $table = 'status';
     public $timestamps = false;
     
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
     ];

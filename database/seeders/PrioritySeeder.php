@@ -8,9 +8,7 @@ use App\Models\Priority;
 
 class PrioritySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    // seed priority table
     public function run(): void
     {
         Priority::create(['name' => 'Low']);

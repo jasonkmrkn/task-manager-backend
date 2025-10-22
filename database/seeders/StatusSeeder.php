@@ -8,9 +8,7 @@ use App\Models\Status;
 
 class StatusSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    // seed status table
     public function run(): void
     {
         Status::create(['name' => 'Not Completed']);
