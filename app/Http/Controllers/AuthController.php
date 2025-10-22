@@ -12,24 +12,24 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        // This validates the incoming request
+        // Validate incoming request
         $fields = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
-        // This creates the user in the database
+        // Create new user
         $user = User::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
         ]);
 
-        // This creates an API token for the new user
+        // API token for new user
         $token = $user->createToken('myapptoken')->plainTextToken;
 
-        // This sends back the user info and the token
+        // Send back user info and API token
         $response = [
             'user' => $user,
             'token' => $token,
@@ -38,12 +38,10 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    /**
-     * Log in a user.
-     */
+    // Login
     public function login(Request $request)
     {
-        // This validates the incoming request
+        // Validate request
         $fields = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -59,10 +57,10 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // This creates an API token for the logged-in user
+        // Create token for user
         $token = $user->createToken('myapptoken')->plainTextToken;
 
-        // This sends back the user info and the token
+        // Send back user info and API token
         $response = [
             'user' => $user,
             'token' => $token,
@@ -71,12 +69,10 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    /**
-     * Log out a user.
-     */
+    // Logout
     public function logout(Request $request)
     {
-        // This deletes the user's API token
+        // delete the user token
         $request->user()->currentAccessToken()->delete();
 
         return response([
